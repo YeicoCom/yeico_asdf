@@ -12,3 +12,4 @@ cd yeico_cli
 git checkout ${ASDF_INSTALL_VERSION}
 mkdir -p ${ASDF_INSTALL_PATH}
 cp -fr bin $ASDF_INSTALL_PATH/
+rm -fr ${ASDF_DOWNLOAD_PATH}/yeico_cli
