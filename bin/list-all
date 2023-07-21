@@ -1,19 +1,29 @@
 #!/usr/bin/env bash
 
-# stolen from https://github.com/ndac-todoroki/asdf-v/blob/master/bin/list-all
-releases_path=https://api.github.com/repos/YeicoDev/yeico_cli/releases?per_page=100
-cmd="curl -s"
-if [ -n "$OAUTH_TOKEN" ]; then
-  cmd="$cmd -H 'Authorization: token $OAUTH_TOKEN'"
-fi
-cmd="$cmd $releases_path"
+# response is json with each property in a separated line: "name": "test",
+tags_url=https://api.github.com/repos/YeicoDev/yeico_cli/tags
+tags_list=$(curl -s $tags_url | grep -oP '\"name\": \"\K[^\"]+' | LC_ALL=C sort)
+echo main $tags_list
 
-# stolen from https://github.com/rbenv/ruby-build/pull/631/files#diff-fdcfb8a18714b33b07529b7d02b54f1dR942
-function sort_versions() {
-  sed 'h; s/[+-]/./g; s/.p\([[:digit:]]\)/.z\1/; s/$/.z/; G; s/\n/ /' | \
-    LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
-}
-
-# Fetch all tag names, and get only second column. Then remove all unnecesary characters.
-versions=$(eval $cmd | grep -oE "tag_name\": \".{1,15}\"," | sed 's/tag_name\": \"//;s/\",//' | sort_versions)
-echo $versions
+# [
+#   {
+#     "name": "test2",
+#     "zipball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/zipball/refs/tags/test2",
+#     "tarball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/tarball/refs/tags/test2",
+#     "commit": {
+#       "sha": "c2082af71a990db5db7739ed40382d59b00ef204",
+#       "url": "https://api.github.com/repos/YeicoDev/yeico_cli/commits/c2082af71a990db5db7739ed40382d59b00ef204"
+#     },
+#     "node_id": "REF_kwDOJ-AZxK9yZWZzL3RhZ3MvdGVzdDI"
+#   },
+#   {
+#     "name": "test1",
+#     "zipball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/zipball/refs/tags/test",
+#     "tarball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/tarball/refs/tags/test",
+#     "commit": {
+#       "sha": "c2082af71a990db5db7739ed40382d59b00ef204",
+#       "url": "https://api.github.com/repos/YeicoDev/yeico_cli/commits/c2082af71a990db5db7739ed40382d59b00ef204"
+#     },
+#     "node_id": "REF_kwDOJ-AZxK5yZWZzL3RhZ3MvdGVzdA"
+#   }
+# ]
