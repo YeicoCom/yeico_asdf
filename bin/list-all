@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
 
 # response is json with each property in a separated line: "name": "test",
-tags_url=https://api.github.com/repos/YeicoDev/yeico_cli/tags
+tags_url=https://api.github.com/repos/YeicoCom/yeico_cli/tags
 tags_list=$(curl -s $tags_url | grep -oP '\"name\": \"\K[^\"]+' | LC_ALL=C sort)
 echo main $tags_list
 
 # [
 #   {
 #     "name": "test2",
-#     "zipball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/zipball/refs/tags/test2",
-#     "tarball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/tarball/refs/tags/test2",
+#     "zipball_url": "https://api.github.com/repos/YeicoCom/yeico_cli/zipball/refs/tags/test2",
+#     "tarball_url": "https://api.github.com/repos/YeicoCom/yeico_cli/tarball/refs/tags/test2",
 #     "commit": {
 #       "sha": "c2082af71a990db5db7739ed40382d59b00ef204",
-#       "url": "https://api.github.com/repos/YeicoDev/yeico_cli/commits/c2082af71a990db5db7739ed40382d59b00ef204"
+#       "url": "https://api.github.com/repos/YeicoCom/yeico_cli/commits/c2082af71a990db5db7739ed40382d59b00ef204"
 #     },
 #     "node_id": "REF_kwDOJ-AZxK9yZWZzL3RhZ3MvdGVzdDI"
 #   },
 #   {
 #     "name": "test1",
-#     "zipball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/zipball/refs/tags/test",
-#     "tarball_url": "https://api.github.com/repos/YeicoDev/yeico_cli/tarball/refs/tags/test",
+#     "zipball_url": "https://api.github.com/repos/YeicoCom/yeico_cli/zipball/refs/tags/test",
+#     "tarball_url": "https://api.github.com/repos/YeicoCom/yeico_cli/tarball/refs/tags/test",
 #     "commit": {
 #       "sha": "c2082af71a990db5db7739ed40382d59b00ef204",
-#       "url": "https://api.github.com/repos/YeicoDev/yeico_cli/commits/c2082af71a990db5db7739ed40382d59b00ef204"
+#       "url": "https://api.github.com/repos/YeicoCom/yeico_cli/commits/c2082af71a990db5db7739ed40382d59b00ef204"
 #     },
 #     "node_id": "REF_kwDOJ-AZxK5yZWZzL3RhZ3MvdGVzdA"
 #   }

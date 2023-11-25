@@ -7,7 +7,7 @@ ASDF_INSTALL_VERSION=${ASDF_INSTALL_VERSION:=main}
 rm -fr $ASDF_LOCAL_HOME
 mkdir -p ${ASDF_DOWNLOAD_PATH}
 cd ${ASDF_DOWNLOAD_PATH}
-git clone https://github.com/YeicoDev/yeico_cli.git
+git clone https://github.com/YeicoCom/yeico_cli.git
 cd yeico_cli
 git checkout ${ASDF_INSTALL_VERSION}
 mkdir -p ${ASDF_INSTALL_PATH}
